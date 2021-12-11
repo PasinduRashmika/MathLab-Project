@@ -138,27 +138,47 @@ end
 
 % --- Executes on button press in radiobutton1.
 function radiobutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to radiobutton1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of radiobutton1
 
 
-% --- Executes on button press in radiobutton2.
-function radiobutton2_Callback(hObject, eventdata, handles)
-% hObject    handle to radiobutton2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of radiobutton2
 
 
-% --- Executes on button press in pushbutton3.
+
 function pushbutton3_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton3 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+NIC = get(handles.edit1,'String');
+conn = database('mathlab','root','');
+result1=exec(conn,'SELECT NIC from person');
+result2=exec(conn,'SELECT name from person');
+result3=exec(conn,'SELECT age from person');
+result4=exec(conn,'SELECT vaccineType from person');
+result5=exec(conn,'SELECT FDate from person');
+result6=exec(conn,'SELECT SDate from person');
+
+result1=fetch(result1);
+result2=fetch(result2);
+result3=fetch(result3);
+result4=fetch(result4);
+result5=fetch(result5);
+result6=fetch(result6);
+
+p1=result1.Data;
+p2=result2.Data;
+p3=result3.Data;
+p4=result4.Data;
+p5=result5.Data;
+p6=result6.Data;
+
+q1=cell2mat(p1);
+q2=cell2mat(p2);
+q3=cell2mat(p3);
+q4=cell2mat(p4);
+q5=cell2mat(p5);
+q6=cell2mat(p6);
+
+set(handles.edit2,'string',q2);
+set(handles.edit3,'string',q3);
+set(handles.edit4,'string',q4);
+set(handles.edit5,'string',q5);
+set(handles.edit6,'string',q6);
 
 
 

@@ -1,30 +1,5 @@
 function varargout = Login(varargin)
-% LOGIN MATLAB code for Login.fig
-%      LOGIN, by itself, creates a new LOGIN or raises the existing
-%      singleton*.
-%
-%      H = LOGIN returns the handle to a new LOGIN or the handle to
-%      the existing singleton*.
-%
-%      LOGIN('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in LOGIN.M with the given input arguments.
-%
-%      LOGIN('Property','Value',...) creates a new LOGIN or raises the
-%      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before Login_OpeningFcn gets called.  An
-%      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to Login_OpeningFcn via varargin.
-%
-%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
-%      instance to run (singleton)".
-%
-% See also: GUIDE, GUIDATA, GUIHANDLES
 
-% Edit the above text to modify the response to help Login
-
-% Last Modified by GUIDE v2.5 24-Nov-2021 23:59:06
-
-% Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
@@ -41,6 +16,7 @@ if nargout
 else
     gui_mainfcn(gui_State, varargin{:});
 end
+%imshow('E:\MatLab Image Processing Project\LogoN.png');
 % End initialization code - DO NOT EDIT
 
 
@@ -75,22 +51,9 @@ varargout{1} = handles.output;
 
 
 function edit1_Callback(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit1 as text
-%        str2double(get(hObject,'String')) returns contents of edit1 as a double
-
-
-% --- Executes during object creation, after setting all properties.
 function edit1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -98,40 +61,75 @@ end
 
 
 function edit2_Callback(hObject, eventdata, handles)
-% hObject    handle to edit2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit2 as text
-%        str2double(get(hObject,'String')) returns contents of edit2 as a double
-
-
-% --- Executes during object creation, after setting all properties.
 function edit2_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 
 % --- Executes during object creation, after setting all properties.
-function axes1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to axes1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-axis off
-imshow('E:\MatLab Image Processing Project\LogoN.png');
+
 
 
 % --- Executes on button press in pushbutton1.
 function pushbutton1_Callback(hObject, eventdata, handles)
+NIC = get(handles.edit1,'String');
+Pass = get(handles.edit2,'String');
 conn = database('mathlab','root','');
-resu=exec(conn,'SELECT * from login');
-resu=fetch(resu);
-resu.Data
-VPI
-closereq();
+result1=exec(conn,'SELECT NIC from login');
+result2=exec(conn,'SELECT password from login');
+result1=fetch(result1);
+result2=fetch(result2);
+%rs=result1.Data
+p1=result1.Data;
+p2=result2.Data;
+%class(p1)
+q1=cell2mat(p1)
+q2=cell2mat(p2)
+
+if q1==NIC  
+    if q2==Pass
+        disp('correct')
+         VPI
+         closereq();
+    else
+        disp('Invalid NIC or Password')
+        f = msgbox('Invalid NIC or Password','Error');
+    end    
+else 
+   disp('Invalid NIC or Password') 
+   f = msgbox('Invalid NIC or Password','Error');
+end
+
+
+%result1str= strings(result1)
+%result2str=strings(result2);
+
+%i=strcmp(result1str,NIC)
+%disp(i)
+
+%if strcmp(NIC,result1) 
+%    disp('kkk')
+%    if strcmp(result2,Pass)
+%        disp(NIC)
+%        disp(Pass)
+%        VPI
+%        closereq();
+%    else
+%        disp('Wrong2');
+%   end    
+%else
+%    disp('Wrong');
+%end
+
+
+
+% --- Executes during object creation, after setting all properties.
+
+
+% --- Executes during object creation, after setting all properties.
+function axes3_CreateFcn(hObject, eventdata, handles)
+axis off
+imshow('E:\MatLab Image Processing Project\LogoN.png');
