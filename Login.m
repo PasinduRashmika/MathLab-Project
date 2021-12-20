@@ -18,7 +18,9 @@ else
 end
 %imshow('E:\MatLab Image Processing Project\LogoN.png');
 % End initialization code - DO NOT EDIT
-
+function axes3_CreateFcn(hObject, eventdata, handles)
+axis off
+imshow('LogoN.png');
 
 % --- Executes just before Login is made visible.
 function Login_OpeningFcn(hObject, eventdata, handles, varargin)
@@ -40,12 +42,7 @@ guidata(hObject, handles);
 
 % --- Outputs from this function are returned to the command line.
 function varargout = Login_OutputFcn(hObject, eventdata, handles) 
-% varargout  cell array for returning output args (see VARARGOUT);
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
-% Get default command line output from handles structure
 varargout{1} = handles.output;
 
 
@@ -86,6 +83,9 @@ result2=fetch(result2);
 p1=result1.Data;
 p2=result2.Data;
 %class(p1)
+disp(NIC);
+disp(Pass);
+
 q1=cell2mat(p1)
 q2=cell2mat(p2)
 
@@ -130,6 +130,4 @@ end
 
 
 % --- Executes during object creation, after setting all properties.
-function axes3_CreateFcn(hObject, eventdata, handles)
-axis off
-imshow('E:\MatLab Image Processing Project\LogoN.png');
+
