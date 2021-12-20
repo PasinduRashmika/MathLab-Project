@@ -13,5 +13,5 @@ figure(1)
 imshow(binaryImage);
 title('Cleaned Binary Image');
 % Use the 'CharacterSet' parameter to constrain OCR
-results = ocr(binaryImage, 'CharacterSet', '0123456789', 'TextLayout','Block');
+results = ocr(binaryImage, 'CharacterSet', '0123456789', 'TextLayout','Word');
 results.Text;
